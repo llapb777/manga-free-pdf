@@ -1,5 +1,12 @@
 const mangaList = [
 	{
+		name: "Чего изволите, принц?",
+		link: "https://vk.ru/wall-226635104_105",
+		type: "Манхва",
+		imgLink:
+			"https://sun1-93.vkuserphoto.ru/impg/xf9CEI25ByIIL3oH4JaGc0K61nSc62yIhwoRtA/zwKyFXG1oso.jpg?size=766x1200&quality=95&sign=1b73db4f2ea843777dd730462a94d6dc&type=album",
+	},
+	{
 		name: "Всенародный дух: мой духовный питомец - женщина-зомби",
 		link: "https://vk.ru/wall-226635104_103",
 		type: "Маньхуа",
