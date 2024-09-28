@@ -24,7 +24,7 @@ const render = () => {
 	} else {
 		root.classList.add("manga-list__empty")
 		root.innerHTML =
-			"<div class='empty'><img class='empty__img' src='../img/empty.png' alt='empty'/><div>Ничего не найдено</div></div>"
+			"<div class='empty'><img class='empty__img' src='./img/empty.png' alt='empty'/><div>Ничего не найдено</div></div>"
 	}
 }
 
@@ -38,11 +38,11 @@ function renderCurrentItem() {
 				<img class="current-item__img" src="${item.imgLink}" alt="Image" />
 				<div class="social">
 					<a class="social__link" target="_blank" href="${item.link}">
-					<img class="social__img" src="../img/vk.ico" alt="vk">
+					<img class="social__img" src="./img/vk.ico" alt="vk">
 					Скачать эту мангу в вк
 					</a>
 					<a class="social__link" target="_blank" href="${item.tgLink}">
-					<img class="social__img" src="../img/tg.png" alt="telegram">
+					<img class="social__img" src="./img/tg.png" alt="telegram">
 					Скачать эту мангу в телеграмм
 					</a>
 				</div>
