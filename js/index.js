@@ -21,6 +21,20 @@ const render = () => {
           <button id=${item.id} class="item__link" title='${item.name}'>${item.name.slice(0, 30)} ${item.name.length > 30 ? "..." : ""}</button>
         </div>`
 		})
+		const btnItems = document.querySelectorAll(".item__tg-link")
+	btnItems.forEach(item => {
+		item.addEventListener("click", e => {
+			currentItem = Number(e.target.id)
+			renderCurrentItem()
+		})
+	})
+	const btnsLink = document.querySelectorAll(".item__link")
+	btnsLink.forEach(item => {
+		item.addEventListener("click", e => {
+			currentItem = Number(e.target.id)
+			renderCurrentItem()
+		})
+	})
 	} else {
 		root.classList.add("manga-list__empty")
 		root.innerHTML =
@@ -68,20 +82,6 @@ function renderCurrentItem() {
 			mangaResult = mangaList
 		})
 	render()
-	const btnItems = document.querySelectorAll(".item__tg-link")
-	btnItems.forEach(item => {
-		item.addEventListener("click", e => {
-			currentItem = Number(e.target.id)
-			renderCurrentItem()
-		})
-	})
-	const btnsLink = document.querySelectorAll(".item__link")
-	btnsLink.forEach(item => {
-		item.addEventListener("click", e => {
-			currentItem = Number(e.target.id)
-			renderCurrentItem()
-		})
-	})
 })()
 
 filter.addEventListener("change", e => {
