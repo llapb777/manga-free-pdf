@@ -61,7 +61,7 @@ function renderCurrentItem() {
 	}
 }
 ;(async () => {
-	await fetch("../data.json")
+	await fetch("./data.json")
 		.then(response => response.json())
 		.then(data => {
 			mangaList = data
