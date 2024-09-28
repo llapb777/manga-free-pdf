@@ -93,7 +93,7 @@ const mangaList = [
 	{
 		name: "Я стал другом детства босса среднего уровня",
 		link: "https://vk.ru/wall-226635104_51",
-		type: "Маньхуа",
+		type: "Манхва",
 		imgLink:
 			"https://sun9-79.vkuserphoto.ru/impg/s0gi1ocnXz3sRxocGIGRpAKoNqYlJxIsto0S1w/zGWvRBUamQU.jpg?size=700x1000&quality=95&sign=607a7922e3bcb2e58c4afb6350180d1d&type=album",
 	},
