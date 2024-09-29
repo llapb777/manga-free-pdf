@@ -22,12 +22,19 @@
         </div>
       </header>
       <div class="main container">
-        <select name="filter" id="filter">
-          <option value="">Тип</option>
-          <option value="Манга">Манга</option>
-          <option value="Манхва">Манхва</option>
-          <option value="Маньхуа">Маньхуа</option>
-        </select>
+        <div class="filter">
+          <select name="filter-type" id="filter-type">
+            <option value="">Тип</option>
+            <option value="Манга">Манга</option>
+            <option value="Манхва">Манхва</option>
+            <option value="Маньхуа">Маньхуа</option>
+          </select>
+          <select name="filter-status" id="filter-status">
+            <option value="">Статус</option>
+            <option value="Онгоинг">Онгоинг</option>
+            <option value="Завершён">Завершён</option>
+          </select>
+        </div>
         <div class="manga-list"></div>
       </div>
     </div>

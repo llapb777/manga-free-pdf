@@ -266,7 +266,14 @@ footer {
 	width: 1rem;
 }
 
-#filter {
+.filter {
+	display: flex;
+	flex-direction: column;
+	row-gap: 0.5rem;
+}
+
+#filter-type,
+#filter-status {
 	width: 100%;
 	border: 1px solid #ff6a00;
 	background: transparent;
@@ -275,11 +282,13 @@ footer {
 	border-radius: 0.5rem;
 }
 
-#filter > option {
+#filter-type > option,
+#filter-status > option {
 	background: #000;
 	color: #fff;
 }
-#filter > option&::selection {
+#filter-type > option&::selection,
+#filter-status > option&::selection {
 	background: #ff6a00;
 	color: #fff;
 }

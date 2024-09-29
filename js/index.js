@@ -4,8 +4,11 @@ let mangaResult = mangaList
 const root = document.querySelector(".manga-list")
 const main = document.querySelector(".main")
 const search = document.querySelector(".header__search")
-const filter = document.querySelector("#filter")
+const filterType = document.querySelector("#filter-type")
+const filterStatus = document.querySelector("#filter-status")
+
 let currentItem = null
+const filter = { type: "", status: "" }
 
 const render = () => {
 	root.classList.remove("manga-list__empty")
@@ -18,23 +21,27 @@ const render = () => {
 			}" target="_blank" ><img class="item__image" title='${item.name}' src="${
 				item.imgLink
 			}" alt="${item.name}"></button>
-          <button id=${item.id} class="item__link" title='${item.name}'>${item.name.slice(0, 30)} ${item.name.length > 30 ? "..." : ""}</button>
+          <button id=${item.id} class="item__link" title='${
+				item.name
+			}'>${item.name.slice(0, 30)} ${
+				item.name.length > 30 ? "..." : ""
+			}</button>
         </div>`
 		})
 		const btnItems = document.querySelectorAll(".item__tg-link")
-	btnItems.forEach(item => {
-		item.addEventListener("click", e => {
-			currentItem = Number(e.target.id)
-			renderCurrentItem()
+		btnItems.forEach(item => {
+			item.addEventListener("click", e => {
+				currentItem = Number(e.target.id)
+				renderCurrentItem()
+			})
 		})
-	})
-	const btnsLink = document.querySelectorAll(".item__link")
-	btnsLink.forEach(item => {
-		item.addEventListener("click", e => {
-			currentItem = Number(e.target.id)
-			renderCurrentItem()
+		const btnsLink = document.querySelectorAll(".item__link")
+		btnsLink.forEach(item => {
+			item.addEventListener("click", e => {
+				currentItem = Number(e.target.id)
+				renderCurrentItem()
+			})
 		})
-	})
 	} else {
 		root.classList.add("manga-list__empty")
 		root.innerHTML =
@@ -51,14 +58,22 @@ function renderCurrentItem() {
 			<div class="current-item__left">
 				<img class="current-item__img" src="${item.imgLink}" alt="Image" />
 				<div class="social">
-					<a class="social__link" target="_blank" href="${item.link}">
-					<img class="social__img" src="./img/vk.ico" alt="vk">
-					Скачать эту мангу в вк
-					</a>
-					<a class="social__link" target="_blank" href="${item.tgLink}">
-					<img class="social__img" src="./img/tg.png" alt="telegram">
-					Скачать эту мангу в телеграмм
-					</a>
+					${
+						item.link && item.link.length
+							? `<a class="social__link" target="_blank" href="${item.link}">
+						<img class="social__img" src="./img/vk.ico" alt="vk">
+						Скачать эту мангу в вк
+					</a>`
+							: ""
+					}
+					${
+						item.tgLink && item.tgLink.length
+							? `<a class="social__link" target="_blank" href="${item.tgLink}">
+						<img class="social__img" src="./img/tg.png" alt="telegram">
+						Скачать эту мангу в телеграмм
+					</a>`
+							: ""
+					}
 				</div>
 			</div>
 			<div class="current-item__info">
@@ -84,12 +99,26 @@ function renderCurrentItem() {
 	render()
 })()
 
-filter.addEventListener("change", e => {
-	if (e.target.value === "") {
-		mangaResult = mangaList
-	} else {
-		mangaResult = mangaList.filter(f => f.type === e.target.value)
-	}
+const filterMangaList = () => {
+	mangaResult = mangaList.filter(f => {
+		if (
+			(f.type === filter.type || filter.type === "") &&
+			(f.status === filter.status || filter.status === "")
+		) {
+			return f
+		}
+	})
+}
+
+filterType.addEventListener("change", e => {
+	filter.type = e.target.value
+	filterMangaList()
+	render()
+})
+
+filterStatus.addEventListener("change", e => {
+	filter.status = e.target.value
+	filterMangaList()
 	render()
 })
 
