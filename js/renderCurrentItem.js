@@ -3,6 +3,7 @@ export default function renderCurrentItem(mangaList, currentItem) {
 
 	if (currentItem !== null) {
 		const item = mangaList.find(f => f.id === currentItem)
+		document.querySelector(".pagination").classList.add("pagination__hide")
 		main.innerHTML = ""
 		main.innerHTML = `<div class="container">
 		<div class="current-item">
