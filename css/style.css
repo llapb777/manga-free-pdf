@@ -427,7 +427,39 @@ footer {
 	height: 80%;
 }
 
-
 .item__no-image {
-	
+}
+
+.pagination {
+	display: flex;
+	column-gap: 0.5rem;
+	width: 100%;
+	justify-content: center;
+	margin-top: 1rem;
+}
+
+.btn-page {
+	width: 1.3rem;
+	height: 1.3rem;
+	border-radius: 50%;
+	color: #fff;
+	font-size: 0.7rem;
+	background: #727272;
+	position: relative;
+	z-index: 1;
+}
+
+.btn-page:hover {
+	background: #ff6a00c9;
+}
+.btn-page:active {
+	background: #ff6a00;
+}
+
+.page-active {
+	background: #ff6a00;
+}
+
+.pagination__hide {
+	display: none;
 }

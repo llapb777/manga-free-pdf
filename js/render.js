@@ -5,7 +5,7 @@ export const render = (mangaList, mangaResult, currentItem) => {
 
 	root.classList.remove("manga-list__empty")
 	root.innerHTML = ""
-	if (mangaResult.length) {
+	if (mangaResult && mangaResult.length) {
 		mangaResult.forEach(item => {
 			root.innerHTML += `<div class="item">
           <button id=${item.id} class="item__tg-link ${
