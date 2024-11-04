@@ -2,7 +2,6 @@ import renderCurrentItem from "./renderCurrentItem.js"
 
 export const render = (mangaList, mangaResult, currentItem) => {
 	const root = document.querySelector(".manga-list")
-
 	root.classList.remove("manga-list__empty")
 	root.innerHTML = ""
 	if (mangaResult && mangaResult.length) {
@@ -17,7 +16,7 @@ export const render = (mangaList, mangaResult, currentItem) => {
 			}</button>
           <button id=${item.id} class="item__link" title="${
 				item.name
-			}">${item.name.slice(0, 30)} ${
+			}">${item.name.slice(0, 30).trim()}${
 				item.name.length > 30 ? "..." : ""
 			}</button>
         </div>`
