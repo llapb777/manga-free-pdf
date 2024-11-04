@@ -1,6 +1,8 @@
 import { render } from "./render.js"
+import renderCurrentItem from "./renderCurrentItem.js"
+import renderFilter from "./renderFilter.js"
 
-const limit = 20
+const limit = 21
 let currentPage = 1
 let mangaList = []
 let mangaResult = mangaList
@@ -9,12 +11,31 @@ let mangaCount = null
 const offset = currentPage * limit - limit
 
 const search = document.querySelector(".header__search")
-const filterType = document.querySelector("#filter-type")
-const filterStatus = document.querySelector("#filter-status")
 
 let currentItem = null
 const filter = { type: "", status: "" }
+renderFilter()
+let filterType = document.querySelector("#filter-type")
+let filterStatus = document.querySelector("#filter-status")
 
+window.addEventListener("popstate", e => {
+	if (e.target.location.pathname === "/" || window.history.state.page) {
+		if (window.history.state?.page) {
+			currentPage = window.history.state.page
+			let offset = currentPage * limit - limit
+			mangaResult = mangaList.slice(offset, offset + limit)
+		}
+		renderFilter()
+		render(mangaList, mangaResult, currentItem)
+		filterType = document.querySelector("#filter-type")
+		filterStatus = document.querySelector("#filter-status")
+		addListenerFilter()
+		mangaCount = mangaList.length
+		renderCount()
+		pagination(mangaCount, mangaList)
+		document.querySelector(".pagination").classList.remove("pagination__hide")
+	}
+})
 ;(async () => {
 	await fetch("./data.json")
 		.then(response => response.json())
@@ -23,9 +44,19 @@ const filter = { type: "", status: "" }
 			mangaResult = mangaList.slice(offset, offset + limit)
 		})
 	mangaCount = mangaList.length
+	if (window.history.state?.page) {
+		currentPage = window.history.state.page
+		let offset = currentPage * limit - limit
+		mangaResult = mangaList.slice(offset, offset + limit)
+	}
 	await pagination(mangaCount, mangaList)
 	renderCount()
-	render(mangaList, mangaResult, currentItem)
+	if (window.history.state?.id) {
+		renderCurrentItem(mangaList, window.history.state.id)
+	} else {
+		render(mangaList, mangaResult, currentItem)
+		addListenerFilter()
+	}
 })()
 
 const filterMangaList = () => {
@@ -66,6 +97,7 @@ function pagination(count, list) {
 		for (let i = 0; i < btns.length; i++) {
 			btns[i].addEventListener("click", e => {
 				if (currentPage !== Number(e.target.id)) {
+					window.history.pushState({ page: i + 1 }, "page", "?page=" + (i + 1))
 					currentPage = Number(e.target.id)
 					renderPagination()
 					const offset = currentPage * limit - limit
@@ -76,28 +108,6 @@ function pagination(count, list) {
 		}
 	}
 }
-
-filterType.addEventListener("change", e => {
-	filter.type = e.target.value
-	filterMangaList()
-	filterManga = mangaResult
-	pagination(mangaResult.length, filterManga)
-	currentPage = 1
-	mangaCount = filterManga.length
-	renderCount()
-	render(mangaList, mangaResult.slice(offset, offset + limit), currentItem)
-})
-
-filterStatus.addEventListener("change", e => {
-	filter.status = e.target.value
-	filterMangaList()
-	filterManga = mangaResult
-	pagination(mangaResult.length, filterManga)
-	currentPage = 1
-	mangaCount = filterManga.length
-	renderCount()
-	render(mangaList, mangaResult.slice(offset, offset + limit), currentItem)
-})
 
 search.addEventListener("keyup", e => {
 	mangaResult = mangaList.filter(f =>
@@ -110,3 +120,27 @@ search.addEventListener("keyup", e => {
 	renderCount()
 	render(mangaList, mangaResult.slice(offset, offset + limit), currentItem)
 })
+
+function addListenerFilter() {
+	filterType.addEventListener("change", e => {
+		filter.type = e.target.value
+		filterMangaList()
+		filterManga = mangaResult
+		pagination(mangaResult.length, filterManga)
+		currentPage = 1
+		mangaCount = filterManga.length
+		renderCount()
+		render(mangaList, mangaResult.slice(offset, offset + limit), currentItem)
+	})
+
+	filterStatus.addEventListener("change", e => {
+		filter.status = e.target.value
+		filterMangaList()
+		filterManga = mangaResult
+		pagination(mangaResult.length, filterManga)
+		currentPage = 1
+		mangaCount = filterManga.length
+		renderCount()
+		render(mangaList, mangaResult.slice(offset, offset + limit), currentItem)
+	})
+}
