@@ -19,18 +19,11 @@ let filterType = document.querySelector("#filter-type")
 let filterStatus = document.querySelector("#filter-status")
 
 window.addEventListener("popstate", e => {
-<<<<<<< HEAD
 	const page = window.location.search.replace(/\?/, "").split("=")
 	if (e.target.location.search === "" || page[0] === "page") {
 		if (page[0] === "page") {
 			currentPage = Number(page[1])
 			offset = currentPage * limit - limit
-=======
-	if (e.target.location.pathname === "/" || window.history.state.page) {
-		if (window.history.state?.page) {
-			currentPage = window.history.state.page
-			let offset = currentPage * limit - limit
->>>>>>> 847e258511d47959f4951ed66994f0c1e161490d
 			mangaResult = mangaList.slice(offset, offset + limit)
 		}
 		renderFilter()
@@ -42,14 +35,11 @@ window.addEventListener("popstate", e => {
 		renderCount()
 		pagination(mangaCount, mangaList)
 		document.querySelector(".pagination").classList.remove("pagination__hide")
-<<<<<<< HEAD
 	} else {
 		const id = window.location.search.replace(/\?/, "").split("=")
 		if (id[0] === "id") {
 			renderCurrentItem(mangaList, Number(id[1]))
 		}
-=======
->>>>>>> 847e258511d47959f4951ed66994f0c1e161490d
 	}
 })
 ;(async () => {
@@ -60,28 +50,17 @@ window.addEventListener("popstate", e => {
 			mangaResult = mangaList.slice(offset, offset + limit)
 		})
 	mangaCount = mangaList.length
-<<<<<<< HEAD
 	const page = window.location.search.replace(/\?/, "").split("=")
 	if (page[0] === "page") {
 		currentPage = Number(page[1])
 		offset = currentPage * limit - limit
-=======
-	if (window.history.state?.page) {
-		currentPage = window.history.state.page
-		let offset = currentPage * limit - limit
->>>>>>> 847e258511d47959f4951ed66994f0c1e161490d
 		mangaResult = mangaList.slice(offset, offset + limit)
 	}
 	await pagination(mangaCount, mangaList)
 	renderCount()
-<<<<<<< HEAD
 	const id = window.location.search.replace(/\?/, "").split("=")
 	if (id[0] === "id") {
 		renderCurrentItem(mangaList, Number(id[1]))
-=======
-	if (window.history.state?.id) {
-		renderCurrentItem(mangaList, window.history.state.id)
->>>>>>> 847e258511d47959f4951ed66994f0c1e161490d
 	} else {
 		render(mangaList, mangaResult, currentItem)
 		addListenerFilter()
@@ -152,38 +131,24 @@ search.addEventListener("keyup", e => {
 
 function addListenerFilter() {
 	filterType.addEventListener("change", e => {
-<<<<<<< HEAD
 		window.history.pushState({ page: 1 }, "page", "?page=" + 1)
 		currentPage = 1
-=======
->>>>>>> 847e258511d47959f4951ed66994f0c1e161490d
 		filter.type = e.target.value
 		filterMangaList()
 		filterManga = mangaResult
 		pagination(mangaResult.length, filterManga)
-<<<<<<< HEAD
-=======
-		currentPage = 1
->>>>>>> 847e258511d47959f4951ed66994f0c1e161490d
 		mangaCount = filterManga.length
 		renderCount()
 		render(mangaList, mangaResult.slice(offset, offset + limit), currentItem)
 	})
 
 	filterStatus.addEventListener("change", e => {
-<<<<<<< HEAD
 		window.history.pushState({ page: 1 }, "page", "?page=" + 1)
 		currentPage = 1
-=======
->>>>>>> 847e258511d47959f4951ed66994f0c1e161490d
 		filter.status = e.target.value
 		filterMangaList()
 		filterManga = mangaResult
 		pagination(mangaResult.length, filterManga)
-<<<<<<< HEAD
-=======
-		currentPage = 1
->>>>>>> 847e258511d47959f4951ed66994f0c1e161490d
 		mangaCount = filterManga.length
 		renderCount()
 		render(mangaList, mangaResult.slice(offset, offset + limit), currentItem)
