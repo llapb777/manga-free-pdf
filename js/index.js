@@ -13,7 +13,7 @@ let offset = currentPage * limit - limit
 const search = document.querySelector(".header__search")
 
 let currentItem = null
-const filter = { type: "", status: "" }
+let filter = { type: "", status: "" }
 renderFilter()
 let filterType = document.querySelector("#filter-type")
 let filterStatus = document.querySelector("#filter-status")
@@ -35,6 +35,7 @@ window.addEventListener("popstate", e => {
 		renderCount()
 		pagination(mangaCount, mangaList)
 		document.querySelector(".pagination").classList.remove("pagination__hide")
+		filter = {type: "", status: ""}
 	} else {
 		const id = window.location.search.replace(/\?/, "").split("=")
 		if (id[0] === "id") {
