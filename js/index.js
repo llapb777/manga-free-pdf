@@ -26,10 +26,6 @@ window.addEventListener("popstate", e => {
 			offset = currentPage * limit - limit
 			mangaResult = mangaList.slice(offset, offset + limit)
 		}
-		const locationSearch = window.location.search
-		if (!locationSearch.length) {
-			window.history.pushState({ page: 1 }, "page", "?page=1")
-		}
 		renderFilter()
 		render(mangaList, mangaResult, currentItem)
 		filterType = document.querySelector("#filter-type")
@@ -54,6 +50,10 @@ window.addEventListener("popstate", e => {
 			mangaList = data
 			mangaResult = mangaList.slice(offset, offset + limit)
 		})
+	const locationSearch = window.location.search
+	if (!locationSearch.length) {
+		window.history.pushState({ page: 1 }, "page", "?page=1")
+	}
 	mangaCount = mangaList.length
 	const page = window.location.search.replace(/\?/, "").split("=")
 	if (page[0] === "page") {
