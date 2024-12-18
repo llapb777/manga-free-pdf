@@ -47,6 +47,6 @@ export const render = (mangaList, mangaResult, currentItem) => {
 	} else {
 		root.classList.add("manga-list__empty")
 		root.innerHTML =
-			"<div class='empty'><img class='empty__img' src='./img/empty.png' alt='empty'/><div>Ничего не найдено</div></div>"
+			"<div class='empty'><img class='empty__img' src='./img/empty.webp' alt='empty'/><div>Ничего не найдено</div></div>"
 	}
 }

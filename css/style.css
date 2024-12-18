@@ -442,9 +442,24 @@ footer {
 @media (max-width: 768px) {
 	.banner__items {
 		font-size: 1rem;
-		max-width: 20rem;
+		max-width: 27rem;
 		bottom: 1rem;
 		row-gap: 0.1rem;
+	}
+}
+@media (max-width: 700px) {
+	.banner__items {
+		max-width: 25rem;
+	}
+}
+@media (max-width: 625px) {
+	.banner__items {
+		max-width: 22rem;
+	}
+}
+@media (max-width: 530px) {
+	.banner__items {
+		max-width: 19rem;
 	}
 }
 @media (max-width: 480px) {
