@@ -15,7 +15,7 @@ export default function renderCurrentItem(mangaList, currentItem) {
 		const tgLink = `${
 			item.tgLink && item.tgLink.length
 				? `<a class="social__link" target="_blank" href="${item.tgLink}">
-						<img class="social__img" src="./img/tg.png" alt="telegram">
+						<img class="social__img" src="./img/tg.webp" alt="telegram">
 						Скачать эту мангу в телеграмм
 					</a>`
 				: ""
