@@ -25,7 +25,6 @@ async function renderBanner() {
 				? "text-align: end;"
 				: "text-align: start;"
 		}`
-		// bannerItems.style.cssText += `max-width: ${bannerData.textWith};`
 		document.querySelector(".banner__image").style.cssText += `opacity: ${bannerData.opacityImage}`
 
 		bannerData.projects.forEach(item => {
