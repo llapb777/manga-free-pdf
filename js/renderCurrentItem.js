@@ -20,11 +20,20 @@ export default function renderCurrentItem(mangaList, currentItem) {
 					</a>`
 				: ""
 		}`
+		const moreTitle =
+			item.otherTitle && item.otherTitle.length
+				? item.otherTitle.map(
+						title =>
+							`<br />${title.title}: <a href='${title.href}'>${title.name}</a>`
+				  )
+				: ""
+
 		const description = `${
 			item.description
-				? `<p class="info__description"><span>Описание:</span> ${item.description}</p>`
+				? `<p class="info__description"><span>Описание:</span> ${item.description} ${moreTitle}</p>`
 				: ""
 		}`
+
 		const type = `${
 			item.type
 				? `<p class="info__type"><span>Тип:</span> ${item.type}</p>`
